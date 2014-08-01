@@ -51,20 +51,25 @@ private:
 	bool bWaitingToRestart;
 
 	void restartApp(int type=0);
-
-	//--------------------------------------------------------------
-	string ofGetAppName(){
-		string appname = ofSystem("ls ./");
-		vector <string> cleanString = ofSplitString(appname, "\n");
-		appname = cleanString[0];
-		return appname;
-	}
+	
 	//--------------------------------------------------------------
 	string ofGetAppPath(){
-		string appname = ofGetAppName()+"\n";
-		string appPath = ofSystem("find `pwd` -name " + appname);
-		vector <string> cleanString = ofSplitString(appPath, "\n");
-		appPath = cleanString[0];
+		string appPath = ofFilePath::getAbsolutePath(ofFilePath::getCurrentExePath());
 		return appPath;
 	}
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

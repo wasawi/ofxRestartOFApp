@@ -2,6 +2,9 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	string appname = ofFilePath::getAbsolutePath(ofFilePath::getCurrentExePath());
+	ofLogNotice()<<appname;
+	
 }
 
 //--------------------------------------------------------------
