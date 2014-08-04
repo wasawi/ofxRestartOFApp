@@ -8,11 +8,22 @@ ofxRestartOFApp:: ofxRestartOFApp(){
 	startTime,
 	countdown = 0;
 
+//	ofAddListener(this->RESTART, this, &ofxRestartOFApp::restartEvent);
+
 }
 ofxRestartOFApp:: ~ofxRestartOFApp(){
 	ofRemoveListener(ofEvents().update, this, &ofxRestartOFApp::update);
 	ofRemoveListener(ofEvents().draw, this, &ofxRestartOFApp::draw);
 }
+
+/*
+//--------------------------------------------------------------
+void ofxRestartOFApp::restartEvent(float &e){
+	
+	initRestart(e);
+
+}
+*/
 
 //--------------------------------------------------------------
 void ofxRestartOFApp::initRestart(float delaySeconds, bool drawMessage){
@@ -23,7 +34,7 @@ void ofxRestartOFApp::initRestart(float delaySeconds, bool drawMessage){
 	delay				= delaySeconds;
 	bDrawMessage		= drawMessage;
 		
-	ofLogVerbose("Milis to wait before restart") << delay;
+	ofLogVerbose("ofxRestartOFApp")<<"Milis to wait before restart"<< delay;
 	
 	//events
 	ofAddListener(ofEvents().update, this, &ofxRestartOFApp::update);
@@ -39,7 +50,7 @@ void ofxRestartOFApp::update(ofEventArgs &e){
 		countdown = delay - elapsedTime;
 		
 		if (countdown < 0 && !bRestarting){
-			ofLogNotice("Restarting application!") << ofGetAppPath();
+			ofLogVerbose("ofxRestartOFApp")<<"Restarting application:"<< ofGetAppPath();
 			restartApp();
 			bRestarting = true;
 		}
@@ -62,7 +73,7 @@ void ofxRestartOFApp::restartApp(int type){
 	switch (type) {
 		case 0:
 			ofSystem("open " + ofGetAppPath());
-			ofLogNotice("ofRestart()")<<"new app launched";
+			ofLogVerbose("ofxRestartOFApp")<<"restartApp()"<<"new app launched";
 			ofExit();
 			break;
 		default:

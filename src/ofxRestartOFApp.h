@@ -40,7 +40,7 @@ private:
 
 	void update(ofEventArgs &e);
 	void draw(ofEventArgs &e);
-
+	
 	float delay;		// fixed time before restart
 	float countdown;	// time left
 	float elapsedTime;
