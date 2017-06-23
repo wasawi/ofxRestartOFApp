@@ -2,6 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	ofSetLogLevel(OF_LOG_VERBOSE);
+	ofLogToConsole();
 }
 
 //--------------------------------------------------------------
@@ -20,7 +22,7 @@ void ofApp::keyPressed(int key){
 
 	if (key=='r'){
 		// you can specity the delay before restart in seconds
-		restartApp.initRestart(4);
+		restartApp.initRestart(2);
 	}
 	
 }

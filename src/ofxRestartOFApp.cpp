@@ -34,7 +34,7 @@ void ofxRestartOFApp::initRestart(float delaySeconds, bool drawMessage){
 	delay				= delaySeconds;
 	bDrawMessage		= drawMessage;
 		
-	ofLogVerbose("ofxRestartOFApp")<<"Milis to wait before restart"<< delay;
+	ofLogVerbose("ofxRestartOFApp")<<"Secs to wait before restart "<< delay;
 	
 	//events
 	ofAddListener(ofEvents().update, this, &ofxRestartOFApp::update);
@@ -72,7 +72,12 @@ void ofxRestartOFApp::draw(ofEventArgs &e){
 void ofxRestartOFApp::restartApp(int type){
 	switch (type) {
 		case 0:
+#ifdef TARGET_OSX
 			ofSystem("open " + ofGetAppPath());
+#endif
+#ifdef TARGET_WIN32
+			_popen(("start " + ofGetAppPath()).c_str(), "w");
+#endif
 			ofLogVerbose("ofxRestartOFApp")<<"restartApp()"<<"new app launched";
 			ofExit();
 			break;
